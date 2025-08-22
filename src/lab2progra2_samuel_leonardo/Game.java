@@ -56,8 +56,7 @@ public class Game extends RentItem implements MenuActions {
     }
     
     public void subMenu(){
-        GameSubMenu gsm = new GameSubMenu();
-        gsm.setGame(this);
+        GameSubMenu gsm = new GameSubMenu(this);
         gsm.setVisible(true);
     }
     
