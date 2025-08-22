@@ -25,7 +25,7 @@ public class Movie extends RentItem {
         Calendar fechaComparativa = Calendar.getInstance();
         fechaComparativa.add(Calendar.MONTH, -3);
 
-        if (fecha.getTime().after(fechaComparativa.getTime()) || fecha.getTime().equals(fechaComparativa.getTime())) {
+        if (fecha.getTime().after(fechaComparativa.getTime())) {
             return "ESTRENO";
         }
         return "NORMAL";

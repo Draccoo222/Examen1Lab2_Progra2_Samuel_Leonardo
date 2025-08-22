@@ -4,11 +4,14 @@
  */
 package lab2progra2_samuel_leonardo;
 
+import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -140,6 +143,15 @@ public class MainPantalla extends JFrame {
                 if (tipo.equals("Movie")) {
                     baseRenta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese base de renta: "));
                 }
+                   
+                JDateChooser elegirFecha = new JDateChooser();
+                elegirFecha.setDate(new Date());
+                int opF = JOptionPane.showConfirmDialog(null, elegirFecha, "Fecha", JOptionPane.OK_CANCEL_OPTION);
+                Calendar fechaEst = Calendar.getInstance();
+                if(opF == JOptionPane.OK_OPTION){
+                    fechaEst.setTime(elegirFecha.getDate());
+                }
+                
                 JFileChooser imagenPortada = new JFileChooser();
                 imagenPortada.setDialogTitle("Seleccione la portada.");
                 String ruta = null;
@@ -147,16 +159,20 @@ public class MainPantalla extends JFrame {
                 if (resultado == JFileChooser.APPROVE_OPTION) {
                     ruta = imagenPortada.getSelectedFile().getAbsolutePath();
                 }
-
+             
+                
                 RentItem tempInventario = null;
 
                 if (tipo.equals("Movie")) {
                     Movie peliculaAgregada = new Movie(codigo, nombreItem, baseRenta);
+                    
                     peliculaAgregada.setImagen(new ImageIcon(ruta));
+                    peliculaAgregada.setFecha(fechaEst);
                     tempInventario = peliculaAgregada;
                 } else if (tipo.equals("Game")) {
                     Game juegoAgregado = new Game(codigo, nombreItem);
                     juegoAgregado.setImagen(new ImageIcon(ruta));
+                   juegoAgregado.setFechaPublicacion(fechaEst.get(Calendar.DAY_OF_MONTH), fechaEst.get(Calendar.MONTH), fechaEst.get(Calendar.YEAR));
                     tempInventario = juegoAgregado;
 
                 }
@@ -179,6 +195,11 @@ public class MainPantalla extends JFrame {
         });
 
         btnImprimirTodo.addActionListener(e -> {
+          RentItem item= buscarItem(12, 0);
+          if(item instanceof Movie){
+              Movie m = (Movie)item;
+              System.out.println(m.getEstado());
+          }
         });
 
         btnSalir.addActionListener(e -> {
