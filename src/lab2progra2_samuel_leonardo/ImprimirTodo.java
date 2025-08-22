@@ -151,7 +151,7 @@ public class ImprimirTodo extends JFrame {
         lblNombre.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         JLabel lblTipo = new JLabel(item instanceof Movie ? "Movie" : "Game");
-        lblTipo.setFont(new Font("Arial", Font.ITALIC, 12));
+        lblTipo.setFont(new Font("Arial", Font.BOLD, 12));
         lblTipo.setForeground(new Color(180, 180, 180));
         lblTipo.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -202,22 +202,6 @@ public class ImprimirTodo extends JFrame {
                 BorderFactory.createRaisedBevelBorder(),
                 BorderFactory.createEmptyBorder(8, 16, 8, 16)
         ));
-
-        boton.addMouseListener(new java.awt.event.MouseAdapter() {
-            Color colorOriginal = colorFondo;
-
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                boton.setBackground(colorOriginal.brighter());
-                boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
-
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                boton.setBackground(colorOriginal);
-                boton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            }
-        });
 
         return boton;
     }
