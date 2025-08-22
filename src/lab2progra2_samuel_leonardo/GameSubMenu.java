@@ -27,9 +27,11 @@ public class GameSubMenu extends JFrame {
 
     private JPanel orden;
     
-    private JDateChooser fecha;
+    private JDateChooser fecha = new JDateChooser();
 
     public GameSubMenu() {
+        curGame = new Game(1, "Infamous");
+        System.out.println(curGame.getFecha().getTime());
         initComps();
     }
 
@@ -51,24 +53,37 @@ public class GameSubMenu extends JFrame {
         JButton actFecha = new JButton("Actualizar Fecha");
         actFecha.setAlignmentX(Component.CENTER_ALIGNMENT); 
         actFecha.setSize(100, 30);
+        actFecha.addActionListener(e -> {
+            curGame.ejecutarOpcion(0);
+        });
+        
         orden.add(actFecha);
         orden.add(Box.createRigidArea(new Dimension(0, 10)));
 
         JButton agrSpecs = new JButton("Agregar Especificaciones");
         agrSpecs.setAlignmentX(Component.CENTER_ALIGNMENT);
-          agrSpecs.setSize(100, 30);
+        agrSpecs.setSize(100, 30);
+        agrSpecs.addActionListener(e -> {
+            curGame.ejecutarOpcion(1);
+        });
         orden.add(agrSpecs);
         orden.add(Box.createRigidArea(new Dimension(0, 10)));
 
         JButton verSpecs = new JButton("Mirar Especificaciones");
         verSpecs.setAlignmentX(Component.CENTER_ALIGNMENT);
-         verSpecs.setSize(100, 30);
+       verSpecs.setSize(100, 30);
+        verSpecs.addActionListener(e -> {
+            curGame.ejecutarOpcion(2);
+        });
         orden.add(verSpecs);
         orden.add(Box.createRigidArea(new Dimension(0, 10)));
 
         JButton regresar = new JButton("Salir");
         regresar.setAlignmentX(Component.CENTER_ALIGNMENT);
         regresar.setSize(100, 30);
+        regresar.addActionListener(e -> {
+            this.dispose();
+        });
         orden.add(regresar);
 
         orden.add(Box.createVerticalGlue()); 
@@ -82,27 +97,8 @@ public class GameSubMenu extends JFrame {
         this.curGame = curGame;
     }
     
-    public void setearFechaPub(){
-        int opcion = JOptionPane.showConfirmDialog(null, 
-                fecha,               
-                "Seleccione la fecha",           
-                JOptionPane.OK_CANCEL_OPTION
-        );
-        
-        if(opcion == JOptionPane.OK_OPTION){
-       
-            Date fechaSelect = fecha.getDate();
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(fechaSelect);
-            
-            
-            
-        }
-                
-        
+  
     
-    
-    }
 
     public static void main(String[] args) {
         new GameSubMenu().setVisible(true);
