@@ -59,6 +59,14 @@ public abstract class RentItem {
     }
 
     abstract double pagoRenta(int dias);
+
+    public ImageIcon getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(ImageIcon imagen) {
+        this.imagen = imagen;
+    }
     
     
     @Override
