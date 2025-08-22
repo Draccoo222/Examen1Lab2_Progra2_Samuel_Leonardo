@@ -15,7 +15,6 @@ import javax.swing.ImageIcon;
 public class Movie extends RentItem {
 
     private Calendar fecha;
-    private ImageIcon imagenRepresentativa;
 
     public Movie(int codigo, String nombre, double baseRenta) {
         super(codigo, nombre, baseRenta);
@@ -60,13 +59,7 @@ public class Movie extends RentItem {
         this.fecha = fecha;
     }
 
-    public ImageIcon getImagenRepresentativa() {
-        return imagenRepresentativa;
-    }
-
-    public void setImagenRepresentativa(ImageIcon imagenRepresentativa) {
-        this.imagenRepresentativa = imagenRepresentativa;
-    }
+  
     
 
 }
