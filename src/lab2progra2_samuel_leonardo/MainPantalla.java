@@ -110,6 +110,39 @@ public class MainPantalla extends JFrame {
 
         return boton;
     }
+    
+     public void ejecSubMenu(){
+        JTextField code = new JTextField();
+        int opc = JOptionPane.showConfirmDialog(null, 
+                    code,
+                    "Introduzca el codigo del Juego", 
+                    JOptionPane.OK_OPTION
+                );
+        if (opc == JOptionPane.OK_OPTION) {
+            if (!code.getText().isBlank() || !code.getText().isEmpty()) {
+                try {
+                    int codigo = Integer.parseInt(code.getText());
+                    RentItem selectItm = buscarItem(codigo, 0);
+                    if (selectItm != null) {
+                        if (selectItm instanceof Game) {
+                            Game curGame = (Game) selectItm;
+                            JOptionPane.showMessageDialog(null, "SubMenu ejecutado exitosamente!");
+                            curGame.subMenu();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Solo los Juegos tienen opcion de SubMenu");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error, evento con dicho codigo no existe");
+                    }
+                } catch (NumberFormatException em) {
+                    JOptionPane.showConfirmDialog(null, "Solo se permiten numeros en codigo");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No puede dejar el codigo en blanco");
+            }
+        }
+
+    }
 
     public RentItem buscarItem(int codigo, int x) { //Función recursiva 
         if (x >= inventario.size()) {
@@ -192,6 +225,7 @@ public class MainPantalla extends JFrame {
         });
 
         btnEjecutarSubmenu.addActionListener(e -> {
+            ejecSubMenu();
         });
 
         btnImprimirTodo.addActionListener(e -> {
