@@ -21,7 +21,7 @@ public class MainPantalla extends JFrame {
 
     private JLabel lblTitulo, lblSubtitulo;
     private JButton btnAgregarItem, btnRentar, btnEjecutarSubmenu, btnImprimirTodo, btnSalir;
-    private ArrayList<RentItem> inventario = new ArrayList<>();
+    private static ArrayList<RentItem> inventario = new ArrayList<>();
 
     public MainPantalla() {
         pantalla();
@@ -195,11 +195,6 @@ public class MainPantalla extends JFrame {
         });
 
         btnImprimirTodo.addActionListener(e -> {
-          RentItem item= buscarItem(12, 0);
-          if(item instanceof Movie){
-              Movie m = (Movie)item;
-              System.out.println(m.getEstado());
-          }
         });
 
         btnSalir.addActionListener(e -> {
