@@ -63,13 +63,6 @@ public class MainPantalla extends JFrame {
         btnAgregarItem = crearBoton("Agregar Ítem", new Color(70, 130, 180));
         btnRentar = crearBoton("Rentar", new Color(60, 179, 113));
         btnEjecutarSubmenu = crearBoton("Ejecutar Submenú", new Color(255, 140, 0));
-        
-        btnEjecutarSubmenu.addActionListener(e ->{
-            ejecSubMenu();
-        } );
-        
-        
-        
         btnImprimirTodo = crearBoton("Imprimir Todo", new Color(147, 112, 219));
         btnSalir = crearBoton("Salir", new Color(220, 20, 60));
 
@@ -116,39 +109,6 @@ public class MainPantalla extends JFrame {
         });
 
         return boton;
-    }
-    
-    public void ejecSubMenu(){
-        JTextField code = new JTextField();
-        int opc = JOptionPane.showConfirmDialog(null, 
-                    code,
-                    "Introduzca el codigo del Juego", 
-                    JOptionPane.OK_OPTION
-                );
-        if (opc == JOptionPane.OK_OPTION) {
-            if (!code.getText().isBlank() || !code.getText().isEmpty()) {
-                try {
-                    int codigo = Integer.parseInt(code.getText());
-                    RentItem selectItm = buscarItem(codigo, 0);
-                    if (selectItm != null) {
-                        if (selectItm instanceof Game) {
-                            Game curGame = (Game) selectItm;
-                            JOptionPane.showMessageDialog(null, "SubMenu ejecutado exitosamente!");
-                            curGame.subMenu();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Solo los Juegos tienen opcion de SubMenu");
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error, evento con dicho codigo no existe");
-                    }
-                } catch (NumberFormatException em) {
-                    JOptionPane.showConfirmDialog(null, "Solo se permiten numeros en codigo");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "No puede dejar el codigo en blanco");
-            }
-        }
-
     }
 
     public RentItem buscarItem(int codigo, int x) { //Función recursiva 
@@ -235,6 +195,7 @@ public class MainPantalla extends JFrame {
         });
 
         btnImprimirTodo.addActionListener(e -> {
+          new ImprimirTodo().setVisible(true);
         });
 
         btnSalir.addActionListener(e -> {
@@ -257,5 +218,10 @@ public class MainPantalla extends JFrame {
         setLocationRelativeTo(null);
 
     }
+
+    public static ArrayList<RentItem> getInventario() {
+        return inventario;
+    }
+    
 
 }
