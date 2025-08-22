@@ -29,8 +29,8 @@ public class GameSubMenu extends JFrame {
     
     private JDateChooser fecha = new JDateChooser();
 
-    public GameSubMenu() {
-        curGame = new Game(1, "Infamous");
+    public GameSubMenu(Game curGame) {
+        this.curGame = curGame;
         System.out.println(curGame.getFecha().getTime());
         initComps();
     }
@@ -98,11 +98,6 @@ public class GameSubMenu extends JFrame {
     }
     
   
-    
-
-    public static void main(String[] args) {
-        new GameSubMenu().setVisible(true);
-
-    }
+  
 
 }
