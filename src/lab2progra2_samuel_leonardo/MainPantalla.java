@@ -213,6 +213,7 @@ public class MainPantalla extends JFrame {
                     fechaEst.setTime(elegirFecha.getDate());
                 }
                 
+                int cantCopias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de copias disponibles: "));
                 JFileChooser imagenPortada = new JFileChooser();
                 imagenPortada.setDialogTitle("Seleccione la portada.");
                 String ruta = null;
@@ -229,10 +230,12 @@ public class MainPantalla extends JFrame {
                     
                     peliculaAgregada.setImagen(new ImageIcon(ruta));
                     peliculaAgregada.setFecha(fechaEst);
+                    peliculaAgregada.setCantCopias(cantCopias);
                     tempInventario = peliculaAgregada;
                 } else if (tipo.equals("Game")) {
                     Game juegoAgregado = new Game(codigo, nombreItem);
                     juegoAgregado.setImagen(new ImageIcon(ruta));
+                    juegoAgregado.setCantCopias(cantCopias);
                    juegoAgregado.setFechaPublicacion(fechaEst.get(Calendar.DAY_OF_MONTH), fechaEst.get(Calendar.MONTH), fechaEst.get(Calendar.YEAR));
                     tempInventario = juegoAgregado;
 
